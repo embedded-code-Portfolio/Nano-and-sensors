@@ -3,26 +3,33 @@
 //  Interfacing nano with sensors
 #include <Wire.h>  // I2C lib
 
-// variables
-byte errorValue;           // Error code
-byte address;              // the 7-bit address of the device to transmit to
-byte lowerAddress = 0x08;  // Lowest valid address
-byte upperAddress = 0x77;  // Highest valid address
-byte addressCount;         // Number of devices found
-
-
+void deviceAddress();
 
 void setup() {
   // put your setup code here, to run once:
   Wire.begin();  // initilize i2c
 
   Serial.begin(9600);
+  deviceAddress();
   while (!Serial)
     delay(10);
   // Serial.println("I2C Scanner");
 }
 
 void loop() {
+
+
+  delay(5000);
+}
+
+void deviceAddress() {
+  // variables
+  byte errorValue;           // Error code
+  byte address;              // the 7-bit address of the device to transmit to
+  byte lowerAddress = 0x08;  // Lowest valid address
+  byte upperAddress = 0x77;  // Highest valid address
+  byte addressCount;         // Number of devices found
+
   // put your main code here, to run repeatedly:
   Serial.println("Scanning I2C addresses ");
   if (lowerAddress < 0x10)  //
@@ -51,9 +58,4 @@ void loop() {
   Serial.print("Addresses found: ");
   Serial.print(addressCount);
   Serial.println();
-
-
-
-
-  delay(5000);
 }
