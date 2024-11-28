@@ -10,15 +10,14 @@ void setup() {
   Wire.begin();  // initilize i2c
 
   Serial.begin(9600);
-  deviceAddress();
-  while (!Serial)
+  while (!Serial)  
     delay(10);
+  deviceAddress(); // fun if serial is open 
+  
   // Serial.println("I2C Scanner");
 }
 
 void loop() {
-
-
   delay(5000);
 }
 
